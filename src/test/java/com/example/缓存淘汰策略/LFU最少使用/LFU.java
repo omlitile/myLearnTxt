@@ -21,7 +21,6 @@ public class LFU {
                 //淘汰掉最少使用的
                 Map<String,Integer> sortMap = new LinkedHashMap<>();
                 map.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEachOrdered(b->sortMap.put(b.getKey(),b.getValue()));
-                sortMap.
 
             }
 
