@@ -9,12 +9,97 @@ import java.util.stream.Collectors;
 
 public class MainTest {
     public static void main(String args[]) {
+        MainTest mt = new MainTest();
+        double result = 5.0 / 2;
+        System.out.println(result);
 
-        MainTest mainTest = new MainTest();
-        int a = mainTest.numWays(46);
-        System.out.println(a);
     }
 
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int[] sum = new int[nums1.length+nums2.length];
+        System.arraycopy(nums1, 0, sum, 0, nums1.length);
+        System.arraycopy(nums2, 0, sum, nums1.length + 0, nums2.length);
+        Arrays.sort(sum);
+        double result;
+        if(sum.length%2 == 0){
+            double a = (double) sum[sum.length / 2];
+            double b = (double) sum[sum.length / 2 - 1];
+            double temp = (a+b)/2;
+            result = temp;
+        }else{
+            result = (double) sum[sum.length / 2];
+        }
+        return result;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        if(s.length() == 0){
+            return 0;
+        }
+        Map<Character,Integer> map = new HashMap<>();
+        int left = 0;
+        int max = 0;
+        for(int i=0;i<s.length();i++){
+            if(map.containsKey(s.charAt(i))){
+                left = Math.max(left,map.get(s.charAt(i))+1);
+            }
+            map.put(s.charAt(i),i);
+            max = Math.max(max,i-left+1);
+        }
+        return max;
+    }
+
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        ListNode lista = list1;
+        for(int i=0;i<a-1;i++){
+            lista = lista.next;
+        }
+
+        ListNode listb = lista.next;
+        for(int j=a;j<b;j++){
+            listb = listb.next;
+        }
+        listb = listb.next;
+
+        ListNode listc = list2;
+        while (listc.next != null){
+            listc = listc.next;
+        }
+
+        lista.next = list2;
+        listc.next = listb;
+        return list1;
+    }
+
+    public boolean checkPowersOfThree(int n) {
+        boolean flag = false;
+        while (n != 0){
+            if(n % 3 > 1){
+                return false;
+            }
+            n /= 3;
+        }
+        return true;
+    }
+
+    public boolean testa(String index){
+        int x = index.charAt(0) - 'a';
+        int y = Integer.valueOf(index.charAt(1) - '0');
+        int[][] arr = {
+                {0,1,0,1,0,1,0,1},
+                {1,0,1,0,1,0,1,0},
+                {0,1,0,1,0,1,0,1},
+                {1,0,1,0,1,0,1,0},
+                {0,1,0,1,0,1,0,1},
+                {1,0,1,0,1,0,1,0},
+                {0,1,0,1,0,1,0,1},
+                {1,0,1,0,1,0,1,0}
+        };
+        if(arr[x][y] == 1){
+            return false;
+        }
+    return true;
+    }
     public String reorganizeString(String S) {
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < S.length(); i++) {
